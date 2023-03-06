@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="x-icon" href="img/omscico.ico"/>
+    <title>OMSC Hostel Management</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c75b1f485f.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css"
+    rel="stylesheet"
+    />
+    
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">OMSC Hostel Management</a>
+          <button 
+            class="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarSupportedContent" 
+            aria-controls="navbarSupportedContent" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+            <i class="fa fa-bars-staggered fa-1x text-light" aria-hidden="true"></i>
+            <!-- <span class="navbar-toggler-icon text-white"></span> -->
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="mx-auto"></div>
+            <ul class="navbar-nav me-4">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#room">Rooms</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Options
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#contact">Contact</a></li>
+                  <li><a class="dropdown-item" href="#">About</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="auth/login.html">Login</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+      <div class="banner-img w-100 vh-100 d-flex justify-content-center align-items-center">
+        <div class="container text-center d-flex justify-content-center align-items-center p-4">
+            <h1 class="shadow my-text">Occidental Mindoro State College Hostel Management Booking System</h1>
+        </div>
+      </div>
+
+      <!-- Vertically centered modal -->
+      <div class="modal modal-lg fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Single & Double Bed</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-4 ms-auto">
+                    <img src="img/room1.jpeg" class="img-fluid rounded rm-imgModal" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <p class="text-end" id="currentTimeAndDate">October 13, 2022 5:38 pm</p>
+                    <form action="" method="post">
+                      <div class="mb-3">
+                        <input type="text" class="form-control invisible" id="roomID" disabled>
+                        <label for="roomName" class="form-label">Room Name</label>
+                        <input type="text" class="form-control" id="roomName" placeholder="Single & Double Bed" disabled>
+                      </div>
+                      <div class="mb-3">
+                        <label for="Price" class="form-label">Price</label>
+                        <input type="text" class="form-control" id="Price" placeholder="₱800.00" disabled>
+                      </div>
+                      <div class="mb-3">
+                        <label for="Name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="Name" placeholder="Juan Dela Cruz">
+                      </div>
+                      <div class="mb-3">
+                        <label for="Age" class="form-label">Age</label>
+                        <input type="text" class="form-control" id="Age" placeholder="23">
+                      </div>
+                      <div class="mb-3">
+                        <label for="Address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="Address" placeholder="brgy., province, country">
+                      </div>
+                      <div class="mb-3">
+                        <label for="contactNo" class="form-label">Contact Number</label>
+                        <input type="text" class="form-control" id="contactNo" placeholder="09998766565">
+                      </div>
+                      <div class="mb-3">
+                        <label for="contactNo" class="form-label">ID Presented</label>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="input-group">
+                              <select class="form-select" id="idType">
+                                <option selected>Choose...</option>
+                                <option value="UMID">UMID</option>
+                                <option value="Passport ID">Passport ID</option>
+                                <option value="Driver's License">Driver's License</option>
+                                <option value="SSS ID">SSS ID</option>
+                                <option value="Voter's ID">Voter's ID</option>
+                                <option value="Others">Others</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="file" class="form-control" id="idFile" placeholder="Choose file">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="Nationality" class="form-label">Nationality</label>
+                        <input type="text" class="form-control" id="Nationality" placeholder="Filipino">
+                      </div>
+                      <div class="mb-3">
+                        <label for="dateReserved" class="form-label">Date Reserved</label>
+                        <input type="date" class="form-control" id="dateReserved">
+                      </div>
+                      <div class="mb-3">
+                        <label for="reservedHour" class="form-label">Reserved Hour</label>
+                        <input type="time" class="form-control" id="reservedHour">
+                      </div>
+                      <div class="mb-3">
+                        <label for="days" class="form-label">Days</label>
+                        <input type="text" class="form-control" id="days" placeholder="Days">
+                      </div>
+                      <div class="mb-3">
+                        <label for="totalAmount" class="form-label">Total Amount</label>
+                        <input type="text" class="form-control" id="totalAmount" disabled>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="bookNowBtn">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container my-5 d-grid gap-5">
+        <hr id="room">
+        <h3 class="display-5 font-weight-bold text-uppercase text-center">Available Rooms</h3>
+        <div class="row d-flex justify-content-evenly align-items-center" id="roomsDiv">
+        </div>
+        <hr id="contact">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="display-5 font-weight-bold text-uppercase text-center">
+                    Contact Us
+                </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <i class="fa fa-map-marker fa-3x text-success" aria-hidden="true"></i>
+                <h3>Location</h3>
+                <p>San Jose, Occidental Mindoro</p>
+                <i class="fa fa-phone fa-3x text-secondary" aria-hidden="true"></i>
+                <h3>Call Us</h3>
+                <p>+63 956 090 2345</p>
+                <i class="fa fa-envelope fa-3x text-dark" aria-hidden="true"></i>
+                <h3>Email Us</h3>
+                <p>omsc@gmail.com</p>
+            </div>
+            <div class="col-md-8">
+                <div class="contactform">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <span id="lblResponse" class="tab-content">
+
+                            </span>
+                        </div>
+                    </div>
+                    <form action="https://formsubmit.co/omschostel@gmail.com" method="POST">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input name="Name" type="text" id="tbName" class="form-control my-2" placeholder="Name">
+                            </div>
+                            <br>
+                            <div class="col-md-6">
+                                <input name="Email" type="email" id="tbEmail" class="form-control my-2" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input name="Subject" type="text" id="tbSubject" class="form-control my-2" placeholder="Subject">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea name="Message" id="tbMessage" cols="20" rows="10" class="form-control my-2" placeholder="Message"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="submit" value="Send Message" id="btnSendMessage" class="btn btn-lg btn-submit btn-outline-dark">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+              <!-- Footer -->
+        <hr>
+        <footer class="text-center text-lg-start bg-white text-muted">
+          <!-- Section: Social media -->
+          <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+              <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+          
+            <!-- Right -->
+            <div>
+              <a href="" class="me-4 link-secondary">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="" class="me-4 link-secondary">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="" class="me-4 link-secondary">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="" class="me-4 link-secondary">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="" class="me-4 link-secondary">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="" class="me-4 link-secondary">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+            <!-- Right -->
+          </section>
+          <!-- Section: Social media -->
+        
+          <!-- Section: Links  -->
+          <section class="">
+            <div class="container text-center text-md-start mt-5">
+              <!-- Grid row -->
+              <div class="row mt-3">
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                  <!-- Content -->
+                  <h6 class="text-uppercase fw-bold mb-4">
+                    <i class="fas fa-gem me-3 text-secondary"></i>Occidental Mindoro State College
+                  </h6>
+                  <p>
+                    Here you can use rows and columns to organize your footer content. Lorem ipsum
+                    dolor sit amet, consectetur adipisicing elit.
+                  </p>
+                </div>
+                <!-- Grid column -->
+              
+                <!-- Grid column -->
+                <!-- <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4"> -->
+                  <!-- Links -->
+                  <!-- <h6 class="text-uppercase fw-bold mb-4">
+                    Products
+                  </h6>
+                  <p>
+                    <a href="#!" class="text-reset">Angular</a>
+                  </p>
+                  <p>
+                    <a href="#!" class="text-reset">React</a>
+                  </p>
+                  <p>
+                    <a href="#!" class="text-reset">Vue</a>
+                  </p>
+                  <p>
+                    <a href="#!" class="text-reset">Laravel</a>
+                  </p>
+                </div> -->
+                <!-- Grid column -->
+              
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                  <!-- Links -->
+                  <h6 class="text-uppercase fw-bold mb-4">
+                    Useful links
+                  </h6>
+                  <p>
+                    <a href="#!" class="text-reset">Pricing</a>
+                  </p>
+                  <p>
+                    <a href="#!" class="text-reset">Settings</a>
+                  </p>
+                  <p>
+                    <a href="#!" class="text-reset">Orders</a>
+                  </p>
+                  <p>
+                    <a href="#!" class="text-reset">Help</a>
+                  </p>
+                </div>
+                <!-- Grid column -->
+              
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                  <!-- Links -->
+                  <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                  <p><i class="fas fa-home me-3 text-secondary"></i> San Jose, Occidental Mindoro</p>
+                  <p>
+                    <i class="fas fa-envelope me-3 text-secondary"></i>
+                    omsc@gmail.com
+                  </p>
+                  <p><i class="fas fa-phone me-3 text-secondary"></i> +63 956 090 2345</p>
+                </div>
+                <!-- Grid column -->
+              </div>
+              <!-- Grid row -->
+            </div>
+          </section>
+          <!-- Section: Links  -->
+        
+          <!-- Copyright -->
+          <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+            © 2022 Copyright:&nbsp;
+            <a class="text-reset fw-bold" href="#">OMSC</a>
+          </div>
+          <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script src="https://smtpjs.com/v3/smtp.js"></script>
+      <script>
+        var nav = document.querySelector('nav');
+
+        window.addEventListener('scroll', function(){
+            if(window.pageYOffset > 100) {
+                nav.classList.add('bg-dark', 'shadow');
+            }else {
+                nav.classList.remove('bg-dark', 'shadow');
+            }
+        })
+
+      </script>
+      <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+        import { getDatabase, ref, set, child, get, push, update } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+        import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyD0ZQYT-ZKji8Y02nlc8L6nqs4-78uwL4E",
+          authDomain: "omsc-hostel-booking.firebaseapp.com",
+          projectId: "omsc-hostel-booking",
+          storageBucket: "omsc-hostel-booking.appspot.com",
+          messagingSenderId: "168692280364",
+          appId: "1:168692280364:web:652e83332e72f0e8c9f589",
+          measurementId: "G-68ZDM27DX6"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        // Initialize Cloud Storage and get a reference to the service
+        const storage = getStorage(app);
+        // Initialize Realtime Database and get a reference to the service
+        const database = getDatabase();
+        // Initialize Firebase Authentication and get a reference to the service
+        const auth = getAuth();
+
+        //Check if user is sign in
+        const user = auth.currentUser;
+
+        onAuthStateChanged(auth, (user) => {
+              if (user) {
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/firebase.User
+                const uid = user.uid;
+                window.location.href = "admin/dashboard.html";
+                // ...
+              } else {
+                // User is signed out
+                // ...
+              }
+        });
+
+        var OuterDiv = document.getElementById('roomsDiv');
+        var arrayOfRooms = [];
+
+        window.addEventListener('load', GetAllRooms);
+
+        function GetAllRooms() {
+          const roomRef = ref(database);
+          get(child(roomRef, 'RoomsTotal/')).then((snapshot) => {
+            snapshot.forEach(roomData => {
+              arrayOfRooms.push(roomData.val());
+            });
+            AddAllRooms();
+          })
+        }
+
+        function AddAllRooms() {
+          let i = 0;
+          arrayOfRooms.forEach(roomData => {
+            AddARoom(roomData, i++);
+          })
+          assignEvents();
+        }
+
+        var rPic;
+
+        function AddARoom(room, index) {
+          var numPHP = new Intl.NumberFormat("en-PH", {
+            style: 'currency',
+            currency: 'PHP'
+          })
+          
+          let html = 
+          `
+            <div class="card" style="width: 22rem;">
+              <img src="`+ room.RoomPic +`" class="img-fluid" alt="roomImage" style="height: 18rem;">
+              <div class="card-body">
+              <h5 class="card-title">`+ room.RoomName +`</h5>
+              <p class="card-text">`+ numPHP.format(room.RoomPrice) +`</p>
+              <p class="card-text status" id="status">`+ room.RoomStatus +`</p>
+              <button class="roomOne btn btn-primary" id="roomOne-`+ index +`">Book Now</button>
+              </div>
+            </div>
+          `
+
+          let newRoom = document.createElement('div');
+          newRoom.classList.add('avail');
+          newRoom.classList.add('col');
+          newRoom.innerHTML = html;
+          OuterDiv.append(newRoom);
+          
+        }
+
+        function getRoomIndex(id) {
+          var indStart = id.indexOf('-') + 1;
+          var indEnd = id.length;
+          return Number(id.substring(indStart, indEnd));
+        }
+
+        const myModal = document.getElementById('staticBackdrop')
+        const myInput = document.getElementById('roomName')
+        const modalHeader = document.getElementById('staticBackdropLabel')
+
+        myModal.addEventListener('shown.bs.modal', () => {
+          myInput.focus()
+        })
+
+        const rmImgModal = document.querySelector(".rm-imgModal")
+        const currentTimeAndDate = document.getElementById('currentTimeAndDate')
+        const roomName = document.getElementById('roomName')
+        const Price = document.getElementById('Price')
+        const totalAmount = document.getElementById('totalAmount')
+        const roomID = document.getElementById('roomID')
+        const roomStatus = document.getElementById('roomStatus')
+
+        const today = new Date()
+        const month = today.getMonth()
+        const year = today.getFullYear()
+        const day = today.getDay()
+        const daym = today.getDate()
+        const dayArray = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+        const monthArray = new Array("January","February","March","April","May","June","July","August","September","October","November","December")
+
+        const current_date = `${dayArray[day]} ${monthArray[month]}, ${daym} ${year}`
+
+        const hours = addZero(today.getHours())
+        const minutes = addZero(today.getMinutes())
+        const seconds = addZero(today.getSeconds())
+
+        const current_time = `${hours}:${minutes}:${seconds}`
+
+        var numPHP = new Intl.NumberFormat("en-PH", {
+            style: 'currency',
+            currency: 'PHP'
+          })
+
+        var mPrice = 0;
+
+        const days = document.getElementById('days')
+        days.addEventListener("input", () => {
+          totalAmount.value = numPHP.format(mPrice * parseFloat(days.value));
+          if(days.value == "") {
+            totalAmount.value = numPHP.format(0);
+          }
+        })
+
+        function openModal(event) {
+          var index = getRoomIndex(event.target.id);
+          localStorage.Room = JSON.stringify(arrayOfRooms[index]);
+
+          let rooms = localStorage.Room;
+          rooms = JSON.parse(rooms);
+
+          var numPHP = new Intl.NumberFormat("en-PH", {
+            style: 'currency',
+            currency: 'PHP'
+          })
+
+          rPic = rooms.RoomPic;
+
+          if(rooms.RoomStatus == "Not Available") {
+            swal("Warning!", rooms.RoomName+" is not available at this time!", "warning");
+          }else {
+            $("#staticBackdrop").modal('show')
+            currentTimeAndDate.innerText = current_date + " " + current_time
+            roomID.value = rooms.RoomID;
+            rmImgModal.src = rooms.RoomPic;
+            modalHeader.innerHTML = rooms.RoomName;
+            roomName.value = rooms.RoomName;
+            Price.value = numPHP.format(rooms.RoomPrice);
+            mPrice = rooms.RoomPrice;
+            totalAmount.value = numPHP.format(0);
+          }
+          //else if(rooms.RoomStatus == "Reserved") {
+          //   swal("Warning!", rooms.RoomName+" is reserved!", "warning");
+          // }
+        }
+
+        function assignEvents() {
+          var buyBtn = document.getElementsByClassName('roomOne');
+          for(let i = 0; i < buyBtn.length; i++) {
+            buyBtn[i].addEventListener('click', openModal);
+          }
+        }
+
+        function addZero(num) {
+            return num < 10 ? `0${num}` : num
+        }
+
+        const Name = document.getElementById('Name')
+        const Age = document.getElementById('Age')
+        const Address = document.getElementById('Address')
+        const contactNo = document.getElementById('contactNo')
+        const idType = document.getElementById('idType')
+        const idFile = document.getElementById('idFile')
+        const Nationality = document.getElementById('Nationality')
+        const dateReserved = document.getElementById('dateReserved')
+        const reservedHour = document.getElementById('reservedHour')
+
+        //push id
+        const dbRef = ref(database);
+        var bookId = push(child(dbRef, "Booked/")).key;
+        console.log(bookId);
+
+        //book btn
+        $('#bookNowBtn').click(function(){
+          if(Name.value == "") {
+            swal("Invalid!", "Name is empty!", "error");
+          }else if(Age.value == "") {
+            swal("Invalid!", "Age is empty!", "error");
+          }else if(Address.value == "") {
+            swal("Invalid!", "Address is empty!", "error");
+          }else if(contactNo.value == "") {
+            swal("Invalid!", "contactNo is empty!", "error");
+          }else if(idType.value == "") {
+            swal("Invalid!", "idType is empty!", "error");
+          }else if(idFile.value == "") {
+            swal("Invalid!", "idFile is empty!", "error");
+          }else if(Nationality.value == "") {
+            swal("Invalid!", "Nationality is empty!", "error");
+          }else if(dateReserved.value == "") {
+            swal("Invalid!", "dateReserved is empty!", "error");
+          }else if(reservedHour.value == "") {
+            swal("Invalid!", "reservedHour is empty!", "error");
+          }else if(days.value == "") {
+            swal("Invalid!", "days is empty!", "error");
+          }else {
+            UploadProcess();
+          }
+          //console.log(reader.result)
+        })
+
+        var files = [];
+        var reader = new FileReader();
+        var downloadUrl;
+
+        idFile.onchange = e => {
+            files = e.target.files;
+            reader.readAsDataURL(files[0]);
+        }
+
+        function writeUserData(roomNames, Prices, Names, Ages, address, contactNos, idTypes, idFiles, Nationalitys, dateReserved, reservedHour, days, totalAmount, cTime, cDate, roomPics) {
+            set(ref(database, 'Booked/' + roomID.value), {
+                BookID: roomID.value,
+                RoomName: roomNames,
+                Price: Prices,
+                Name: Names,
+                Age: Ages,
+                Address: address,
+                contactNo: contactNos,
+                idType: idTypes,
+                idFile: idFiles,
+                Nationality: Nationalitys,
+                dateReserved: dateReserved,
+                reservedHour: reservedHour,
+                days: days,
+                totalAmount: totalAmount,
+                timeOfBooked: cTime,
+                dateOfBooked: cDate,
+                RoomPic: roomPics,
+            });
+        }
+
+        async function UploadProcess(){
+            var ImgToUpload = files[0];
+            const metaData = {
+                contentType: ImgToUpload.type
+            }
+
+            const storageRef = sRef(storage, "Images/" + bookId);
+
+            const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
+
+            UploadTask.on('state-change', (snapshot) => {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                const bookNowBtn = document.getElementById('bookNowBtn');
+                bookNowBtn.innerHTML = "Uploading " + progress + "%";
+            },
+            (error) => {
+                swal("Error!", "Image not uploaded!", "error");
+            },
+            () => {
+                const bookNowBtn = document.getElementById('bookNowBtn');
+                bookNowBtn.innerHTML = "Book Now";
+                getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+                    downloadUrl = downloadURL;
+                    var rmName = roomName.value;
+                    var Prce = mPrice;
+                    var Nme = Name.value;
+                    var age = Age.value;
+                    var address = Address.value;
+                    var contctNo = contactNo.value;
+                    var idtype = idType.value;
+                    var idfile = downloadURL;
+                    var nationality = Nationality.value;
+                    var datereserved = dateReserved.value;
+                    var reservedhour = reservedHour.value;
+                    var Days = days.value;
+                    var totalamount = mPrice * parseFloat(days.value);
+
+                    writeUserData(rmName, Prce, Nme, age, address, contctNo, idtype, idfile, nationality, datereserved, reservedhour, Days, totalamount, current_time, current_date, rPic);
+
+                    update(ref(database, 'RoomsTotal/' + roomID.value), {
+                      RoomStatus: "Reserved",
+                    });
+
+                    update(ref(database, 'Rooms/Available/' + roomID.value), {
+                      RoomStatus: "Reserved",
+                    });
+
+                    swal("Success!", "Booked successfully!", "success");
+
+                    clearText();
+                })
+            }
+            );
+        }
+
+        function clearText() {
+          Name.value = "";
+          Age.value = "";
+          Address.value = "";
+          Age.value = "";
+          contactNo.value = "";
+          idType.value = "Choose...";
+          idFile.value = "";
+          Nationality.value = "";
+          dateReserved.value = "";
+          reservedHour.value = "";
+          days.value = "";
+          totalAmount.value = numPHP.format(0);
+        }
+
+      </script>
+</body>
+</html>

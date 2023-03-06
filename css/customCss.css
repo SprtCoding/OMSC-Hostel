@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+    box-sizing: border-box;
+}
+
+.my-img {
+    width: 120px;
+    height: 80px;
+}
+
+main {
+    background-color: rgb(244, 249, 254);
+}
+
+.logo {
+    width: 25px;
+    height: 25px;
+}
+
+.btnEdit {
+    width: 15px;
+}
+
+.btnDelete {
+    width: 15px;
+}
+
+.my-img {
+    width: 120px;
+    height: 80px;
+}
+
+.bookedByValue {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgb(121, 121, 121);
+    width: 250px;
+    padding-top: 10px;
+  }
+
+.bookedByValue:focus, input:focus{
+    outline: none;
+}
+
+.bookedThruValue {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1px solid rgb(121, 121, 121);
+  width: 250px;
+  padding-top: 10px;
+}
+
+#label {
+  display: inline-block;
+  width: 120px;
+}
+
+/* .excelBtn::before {
+    content: attr(title);
+    display: none;
+    position: absolute;
+    background-color: black;
+    color: white;
+    padding: 4px 8px;
+    white-space: nowrap;
+}
+  
+.excelBtn:hover::before {
+    display: inline;
+} */

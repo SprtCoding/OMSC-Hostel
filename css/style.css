@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+* {
+    font-family: 'Poppins';
+    box-sizing: border-box;
+}
+.banner-img {
+    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.3)), url("../img/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#btSignout {
+    letter-spacing: 2px;
+    color: #fff;
+    display: grid;
+    place-content: center;
+}
+
+#btLogin {
+    letter-spacing: 2px;
+    color: #fff;
+    display: grid;
+    place-content: center;
+}
+
+.loader {
+    pointer-events: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #fff;
+    animation: an1 1s ease infinite;
+}
+
+@keyframes an1 {
+    0% {
+        transform: rotate(0turn);
+    }
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+.my-text {
+    width: 75%;
+    color: #fff;
+    font-size: 32pt;
+    text-transform: uppercase;
+    font-family: 'Poppins';
+    font-weight: 800;
+    letter-spacing: 2pt;
+}
+
+.h1 {
+    letter-spacing: 2pt;
+    font-family: 'Poppins';
+}
+
+.navbar-brand {
+    letter-spacing: 2pt;
+    font-family: 'Poppins';
+    font-weight: 800;
+}
+
+.form-label {
+    font-size: 10pt;
+}
+
+.form-control {
+    width: 70%;
+}
+
+#btnSendMessage:hover {
+
+}
+
+@media screen and (max-width: 1024px) {
+    .avail {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .navbar-collapse {
+        text-align: center;
+        padding-top: 20px;
+    }
+    .my-text {
+        font-size: 25pt;
+        width: 100wh;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .avail {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .navbar-collapse {
+        text-align: center;
+        padding-top: 20px;
+    }
+    .my-text {
+        font-size: 15pt;
+        width: 100wh;
+    }
+    .navbar-brand {
+        font-size: 5px;
+        letter-spacing: 1pt;
+        font-weight: 400;
+    }
+  }

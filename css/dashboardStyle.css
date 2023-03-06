@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+body {
+  height: 90vh;
+  background: url("../img/backgound.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.navbar-brand {
+    font-family: 'Poppins';
+    font-weight: 800;
+}
+.txt-1 {
+  font-size: 25px;
+}
+.brand-div {
+  width: 50px;
+}
+.ds {
+  font-weight: 800;
+}
+.navbar {
+    background-color: #002060;
+    transition: 0.4s;
+}
+.nav-link {
+    font-size: 1.25rem;
+}
+.nav-link:active,
+.nav-link:focus,
+.nav-link:hover {
+    background-color: #ffffff26;
+}
+.dropdown-menu {
+    background-color: #002060;
+}
+.dropdown-item:active,
+.dropdown-item:focus,
+.dropdown-item:hover {
+    background-color: #ffffff26;
+}
+#viewDetails {
+    cursor: pointer;
+}
+
+
+  /* table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  } */
