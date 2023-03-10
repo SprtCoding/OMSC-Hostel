@@ -71,6 +71,7 @@ $(document).ready(function () {
   var del;
 
   var history = [];
+  var CheckInroomAll = [];
 
   const iconDel =
     '<i class="fas fa-trash fa-1x" style="color: white; cursor: pointer;"></i>';
@@ -241,6 +242,7 @@ $(document).ready(function () {
         $("#checkDetailsModal").modal('show');
         let file = $("#roomTable").dataTable().fnGetData($(this).closest("tr"));
         let roomIds = file[0];
+        let roomNames = file[1];
     
         firebase.database().ref("CheckIn/").child(roomIds).on('value', data => {
             CheckInroomAll = [data.key, data.child("NameOfClient").val(), data.child("NameOfRoom").val(), 
@@ -252,16 +254,16 @@ $(document).ready(function () {
             data.child("Balance").val(), data.child("Status").val()];
         })
 
-        nameValueCheck.value = name;
+        nameValueCheck.value = CheckInroomAll[1];
         roomNameValueCheck.value = roomNames;
-        dateReservedValueCheck.value = dateR;
-        daysValueCheck.value = day;
+        dateReservedValueCheck.value = CheckInroomAll[3];
+        daysValueCheck.value = CheckInroomAll[4];
         hourReservedValueCheck.value = CheckInroomAll[8];
         ageValueCheck.value = CheckInroomAll[7];
         idImageValueCheck.src = CheckInroomAll[13];
         idPresentedValueCheck.value = CheckInroomAll[12];
         addressValueCheck.value = CheckInroomAll[9];
-        contactValueCheck.value = contacts;
+        contactValueCheck.value = CheckInroomAll[5];
         priceValueCheck.value = numPHP.format(CheckInroomAll[10]);
         nationalityValueCheck.value = CheckInroomAll[11];
         totalAmountValueCheck.value = numPHP.format(CheckInroomAll[6]);
