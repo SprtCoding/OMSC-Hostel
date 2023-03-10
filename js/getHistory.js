@@ -2,7 +2,7 @@
 // const tBody = document.getElementById('historytBody');
 
 // function addDataToTable(historyID, name, status, logTime) {
-    
+
 //         let trow = document.createElement("tr");
 //         let td1 = document.createElement('td');
 //         let td2 = document.createElement('td');
@@ -68,100 +68,154 @@
 // window.addEventListener('load', getAllDataHistory);
 
 $(document).ready(function () {
-    var del;
+  var del;
 
-    var history = [];
+  var history = [];
 
-    const iconDel = '<i class="fas fa-trash fa-1x" style="color: white; cursor: pointer;"></i>';
+  const iconDel =
+    '<i class="fas fa-trash fa-1x" style="color: white; cursor: pointer;"></i>';
+  const iconView =
+    '<i class="fas fa-eye fa-1x" style="color: white; cursor: pointer;"></i>';
 
-    var roomTable = $('#roomTable').DataTable({
-        responsive: true,
-        dom: 'Bfrtilp',
-        buttons: [
-            {
-                extend: 'excelHtml5',
-                text: '<i class="fas fa-file-excel" style="cursor: pointer;"></i>',
-                titleAttr: 'Export to Excel',
-                className: 'btn btn-success'
-            },
-            {
-                extend: 'pdfHtml5',
-                text: '<i class="fas fa-file-pdf" style="cursor: pointer;"></i>',
-                titleAttr: 'Export to Pdf',
-                className: 'btn btn-warning'
-            },
-            {
-                extend: 'print',
-                text: '<i class="fas fa-print" style="cursor: pointer;"></i>',
-                titleAttr: 'Print',
-                className: 'btn btn-info'
-            }
-        ],
-        pageLenght: 3,
-        lengthMenu: [[3,5,10,-1],[3,5,10,'all']],
-        data: history,
-        columnDefs: [
-            {
-                targets: [0],
-                visible: false
-            },
-            {
-                targets: -1,
-                defaultContent: "<div class='wrapper text-center'><div class='btn-group'><button class='btnDel btn btn-danger' data-togle='tooltip' title='Delete'>"+iconDel+"</button></div></div>"
-            }
-        ]
-    })
+  var roomTable = $("#roomTable").DataTable({
+    responsive: true,
+    dom: "Bfrtilp",
+    buttons: [
+      {
+        extend: "excelHtml5",
+        text: '<i class="fas fa-file-excel" style="cursor: pointer;"></i>',
+        titleAttr: "Export to Excel",
+        className: "btn btn-success",
+      },
+      {
+        extend: "pdfHtml5",
+        text: '<i class="fas fa-file-pdf" style="cursor: pointer;"></i>',
+        titleAttr: "Export to Pdf",
+        className: "btn btn-warning",
+      },
+      {
+        extend: "print",
+        text: '<i class="fas fa-print" style="cursor: pointer;"></i>',
+        titleAttr: "Print",
+        className: "btn btn-info",
+      },
+    ],
+    pageLenght: 3,
+    lengthMenu: [
+      [3, 5, 10, -1],
+      [3, 5, 10, "all"],
+    ],
+    data: history,
+    columnDefs: [
+      {
+        targets: [0],
+        visible: false,
+      },
+      {
+        targets: -1,
+        defaultContent:
+          "<div class='wrapper text-center'><div class='btn-group'><button class='btnView btn btn-primary' data-togle='tooltip' title='Delete'>" +
+          iconView +
+          "</button><button class='btnDel btn btn-danger' data-togle='tooltip' title='Delete'>" +
+          iconDel +
+          "</button></div></div>",
+      },
+    ],
+  });
 
-    firebase.database().ref("BookedHistory/").on('child_added', data => {
-        
-        if(data.child("status").val() == "Check-In") {
-            var stat = '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
-            history = [data.key, data.child("clientName").val(), stat + data.child("status").val(), "" , data.child("LogTime").val(), data.child("LogDate").val()];
-        }if(data.child("status").val() == "Check-Out") {
-            var stat = '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
-            history = [data.key, data.child("clientName").val(), "" , stat + data.child("status").val() , data.child("LogTime").val(), data.child("LogDate").val()];
-        }
-        roomTable.rows.add([history]).draw();
-    })
+  firebase
+    .database()
+    .ref("BookedHistory/")
+    .on("child_added", (data) => {
+      if (data.child("status").val() == "Check-In") {
+        var stat =
+          '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
+        history = [
+          data.key,
+          data.child("clientName").val(),
+          stat + data.child("status").val(),
+          "",
+          data.child("LogTime").val(),
+          data.child("LogDate").val(),
+        ];
+      }
+      if (data.child("status").val() == "Check-Out") {
+        var stat =
+          '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
+        history = [
+          data.key,
+          data.child("clientName").val(),
+          "",
+          stat + data.child("status").val(),
+          data.child("LogTime").val(),
+          data.child("LogDate").val(),
+        ];
+      }
+      roomTable.rows.add([history]).draw();
+    });
 
-    firebase.database().ref("BookedHistory/").on('child_changed', data => {
-        if(data.child("status").val() == "Check-In") {
-            var stat = '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
-            history = [data.key, data.child("clientName").val(), stat + data.child("status").val(), "" , data.child("LogTime").val(), data.child("LogDate").val()];
-        }if(data.child("status").val() == "Check-Out") {
-            var stat = '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
-            history = [data.key, data.child("clientName").val(), "" , stat + data.child("status").val() , data.child("LogTime").val(), data.child("LogDate").val()];
-        }
-        roomTable.rows.add([history]).draw();
-    })
+  firebase
+    .database()
+    .ref("BookedHistory/")
+    .on("child_changed", (data) => {
+      if (data.child("status").val() == "Check-In") {
+        var stat =
+          '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
+        history = [
+          data.key,
+          data.child("clientName").val(),
+          stat + data.child("status").val(),
+          "",
+          data.child("LogTime").val(),
+          data.child("LogDate").val(),
+        ];
+      }
+      if (data.child("status").val() == "Check-Out") {
+        var stat =
+          '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
+        history = [
+          data.key,
+          data.child("clientName").val(),
+          "",
+          stat + data.child("status").val(),
+          data.child("LogTime").val(),
+          data.child("LogDate").val(),
+        ];
+      }
+      roomTable.rows.add([history]).draw();
+    });
 
-    firebase.database().ref("BookedHistory/").on('child_removed', data => {
-        roomTable.row(del.parents('tr')).remove().draw();
-    })
+  firebase
+    .database()
+    .ref("BookedHistory/")
+    .on("child_removed", (data) => {
+      roomTable.row(del.parents("tr")).remove().draw();
+    });
 
-    $('#roomTable').on('click', '.btnDel', function(){
-        del = $(this);
-        let file = $('#roomTable').dataTable().fnGetData(del.closest('tr'));
-        let roomIds = file[0];
-        let roomNames = file[1];
+  $("#roomTable").on("click", ".btnDel", function () {
+    del = $(this);
+    let file = $("#roomTable").dataTable().fnGetData(del.closest("tr"));
+    let roomIds = file[0];
+    let roomNames = file[1];
 
-        swal({
-            title: "Are you sure want to delete "+roomNames+"?",
-            text: "Once deleted, you will not be able to recover this file!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-                firebase.database().ref("BookedHistory/"+roomIds).remove().then(
-                    function(){
-                        swal("Success!", "Deleted successfully!", "success");
-                    }
-                );
-            } else {
-              swal(roomNames+" is safe!");
-            }
-        });
-    })
+    swal({
+      title: "Are you sure want to delete " + roomNames + "?",
+      text: "Once deleted, you will not be able to recover this file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        firebase
+          .database()
+          .ref("BookedHistory/" + roomIds)
+          .remove()
+          .then(function () {
+            swal("Success!", "Deleted successfully!", "success");
+          });
+      } else {
+        swal(roomNames + " is safe!");
+      }
+    });
+  });
 });
