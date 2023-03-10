@@ -109,6 +109,142 @@
                         </table>
                     </div>
                 </div>
+                <!-- check-in details modal -->
+                <div class="modal modal-lg fade" id="checkDetailsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Check-In Details</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row p-4">
+                                    <div class="col-md-6 text-center" id="bookedByCol">
+                                        <label class="me-2" for="bookedByValueCheck" id="label">Booked By: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="bookedByValueCheck" disabled>
+                                    </div>
+                                    <div class="col-md-6 text-center" id="bookedThruCol">
+                                        <label class="me-2" for="bookedByValueCheck" id="label">Booked Thru: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="bookedThruValueCheck" disabled>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row p-2 text-center">
+                                    <h1 class="modal-title fs-5">Reserved Information</h1>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-6 text-center" id="bookedByCol">
+                                        <label class="me-2" for="nameValueCheck" id="label">Name: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="nameValueCheck" disabled>
+                                    </div>
+                                    <div class="col-md-6 text-center" id="bookedThruCol">
+                                        <label class="me-2" for="dateReservedValueCheck" id="label">Date Reserved: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="dateReservedValueCheck" disabled>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-6 text-center" id="bookedByCol">
+                                        <label class="me-2" for="ageValueCheck" id="label">Age: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="ageValueCheck" disabled>
+                                    </div>
+                                    <div class="col-md-6 text-center" id="bookedThruCol">
+                                        <label class="me-2" for="hourReservedValueCheck" id="label">Reserved Hour: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="hourReservedValueCheck" disabled>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-6 text-center" id="bookedByCol">
+                                        <label class="me-2" for="addressValueCheck" id="label">Address: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="addressValueCheck" disabled>
+                                    </div>
+                                    <div class="col-md-6 text-center" id="bookedThruCol">
+                                        <label class="me-2" for="roomNameValueCheck" id="label">Room Name: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="roomNameValueCheck" disabled>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-6 text-center" id="bookedByCol">
+                                        <label class="me-2" for="contactValueCheck" id="label">Contact No: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="contactValueCheck" disabled>
+                                    </div>
+                                    <div class="col-md-6 text-center" id="bookedThruCol">
+                                        <label class="me-2" for="priceValueCheck" id="label">Price: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="priceValueCheck" disabled>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-6 text-center" id="bookedByCol">
+                                        <label class="me-2" for="nationalityValueCheck" id="label">Nationality: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="nationalityValueCheck" disabled>
+                                    </div>
+                                    <div class="col-md-6 text-center" id="bookedThruCol">
+                                        <label class="me-2" for="daysValueCheck" id="label">Days: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="daysValueCheck" disabled>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-6 text-center" id="bookedByCol">
+                                        <label class="me-2" for="idPresentedValueCheck" id="label">ID Presented: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="idPresentedValueCheck" disabled>
+                                    </div>
+                                    <div class="col-md-6 text-center" id="bookedThruCol">
+                                        <label class="me-2" for="totalAmountValueCheck" id="label">Total Amount: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="totalAmountValueCheck" disabled>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-6 mx-auto d-block" id="bookedByCol">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <img class="rounded img-thumbnail ms-4 w-75 h-75" id="idImageValueCheck" alt="id">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 text-center" id="bookedThruCol">
+                                        <div class="row p-2">
+                                            <h1 class="modal-title fs-5">Payment/Installment/Cash</h1>
+                                        </div>
+                                        <div class="row p-2">
+                                            <div class="col-md-3 text-center ms-5 p-2" id="bookedByCol">
+                                                <label class="me-2" id="label">Method: </label>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select w-50 p-2 ms-3" id="methodValueCheck">
+                                                    <option value="Cash" selected>Fully Paid</option>
+                                                    <option value="Gcash">Deposit</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row p-2">
+                                            <div class="col text-center" id="bookedByCol">
+                                                <label class="me-2" for="firstPaymentValueCheck" id="label">First Payment: </label>
+                                                <input type="text" class="balanceValue w-50 p-2" id="firstPaymentValueCheck" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row p-2">
+                                            <div class="col" id="bookedByCol">
+                                                <label class="me-2" for="balanceValueCheck" id="label">Balance: </label>
+                                                <input type="text" class="balanceValue w-50 p-2" id="balanceValueCheck" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row p-2">
+                                            <div class="col-md-3 text-center ms-5 p-2" id="bookedByCol">
+                                                <label class="me-2" id="label">Status: </label>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select w-50 p-2 ms-3" id="statusValueCheck">
+                                                    <option value="Paid" selected>Paid</option>
+                                                    <option value="Unpaid">Unpaid</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" id="cancelBtn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-close fa-1x me-3" style="color: #ffffff; cursor: pointer;"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
         </div>
     </div>

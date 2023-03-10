@@ -213,4 +213,64 @@ $(document).ready(function () {
       }
     });
   });
+
+  //details
+
+    const nameValueCheck = document.getElementById('nameValueCheck');
+    const dateReservedValueCheck = document.getElementById('dateReservedValueCheck');
+    const ageValueCheck = document.getElementById('ageValueCheck');
+    const hourReservedValueCheck = document.getElementById('hourReservedValueCheck');
+    const addressValueCheck = document.getElementById('addressValueCheck');
+    const roomNameValueCheck = document.getElementById('roomNameValueCheck');
+    const contactValueCheck = document.getElementById('contactValueCheck');
+    const priceValueCheck = document.getElementById('priceValueCheck');
+    const nationalityValueCheck = document.getElementById('nationalityValueCheck');
+    const daysValueCheck = document.getElementById('daysValueCheck');
+    const idPresentedValueCheck = document.getElementById('idPresentedValueCheck');
+    const totalAmountValueCheck = document.getElementById('totalAmountValueCheck');
+    const idImageValueCheck = document.getElementById('idImageValueCheck');
+    const checkInBtnCheck = document.getElementById('checkInBtnCheck');
+    const bookedByValueCheck = document.getElementById('bookedByValueCheck');
+    const bookedThruValueCheck = document.getElementById('bookedThruValueCheck');
+    const methodValueCheck = document.getElementById('methodValueCheck');
+    const firstPaymentValueCheck = document.getElementById('firstPaymentValueCheck');
+    const balanceValueCheck = document.getElementById('balanceValueCheck');
+    const statusValueCheck = document.getElementById('statusValueCheck');
+
+    $("#roomTable").on("click", ".btnView", function () {
+        $("#checkDetailsModal").modal('show');
+        let file = $("#roomTable").dataTable().fnGetData(del.closest("tr"));
+        let roomIds = file[0];
+    
+        firebase.database().ref("CheckIn/").child(roomIds).on('value', data => {
+            CheckInroomAll = [data.key, data.child("NameOfClient").val(), data.child("NameOfRoom").val(), 
+            data.child("DateReserved").val(), data.child("Days").val(), data.child("Contact").val(), 
+            data.child("TotalPayment").val(), data.child("AgeOfClient").val(), data.child("HoursReserved").val(), 
+            data.child("Address").val(), data.child("Price").val(), data.child("Nationality").val(), data.child("IDType").val(), 
+            data.child("ClientsPhotoURL").val(), data.child("RoomPic").val(), data.child("BookedBy").val(), 
+            data.child("BookedThru").val(), data.child("Method").val(), data.child("FirstPayment").val(), 
+            data.child("Balance").val(), data.child("Status").val()];
+        })
+
+        nameValueCheck.value = name;
+        roomNameValueCheck.value = roomNames;
+        dateReservedValueCheck.value = dateR;
+        daysValueCheck.value = day;
+        hourReservedValueCheck.value = CheckInroomAll[8];
+        ageValueCheck.value = CheckInroomAll[7];
+        idImageValueCheck.src = CheckInroomAll[13];
+        idPresentedValueCheck.value = CheckInroomAll[12];
+        addressValueCheck.value = CheckInroomAll[9];
+        contactValueCheck.value = contacts;
+        priceValueCheck.value = numPHP.format(CheckInroomAll[10]);
+        nationalityValueCheck.value = CheckInroomAll[11];
+        totalAmountValueCheck.value = numPHP.format(CheckInroomAll[6]);
+        bookedByValueCheck.value = CheckInroomAll[15];
+        bookedThruValueCheck.value = CheckInroomAll[16];
+        methodValueCheck.value = CheckInroomAll[17];
+        firstPaymentValueCheck.value = numPHP.format(CheckInroomAll[18]);
+        balanceValueCheck.value = numPHP.format(CheckInroomAll[19]);
+        statusValueCheck.value = CheckInroomAll[20];
+      });
+
 });
