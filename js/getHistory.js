@@ -239,8 +239,7 @@ $(document).ready(function () {
 
     $("#roomTable").on("click", ".btnView", function () {
         $("#checkDetailsModal").modal('show');
-        del = $(this);
-        let file = $("#roomTable").dataTable().fnGetData(del.closest("tr"));
+        let file = $("#roomTable").dataTable().fnGetData($(this).closest("tr"));
         let roomIds = file[0];
     
         firebase.database().ref("CheckIn/").child(roomIds).on('value', data => {
