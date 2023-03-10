@@ -21,6 +21,14 @@
     place-content: center;
 }
 
+.notice {
+    color: #FF0000;
+}
+
+.notice-text {
+    font-size: 9px;
+}
+
 #btLogin {
     letter-spacing: 2px;
     color: #fff;
