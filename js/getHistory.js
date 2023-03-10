@@ -239,6 +239,7 @@ $(document).ready(function () {
 
     $("#roomTable").on("click", ".btnView", function () {
         $("#checkDetailsModal").modal('show');
+        del = $(this);
         let file = $("#roomTable").dataTable().fnGetData(del.closest("tr"));
         let roomIds = file[0];
     
