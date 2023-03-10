@@ -113,12 +113,7 @@ $(document).ready(function () {
       },
       {
         targets: -1,
-        defaultContent:
-          "<div class='wrapper text-center'><div class='btn-group'><button class='btnView btn btn-primary' data-togle='tooltip' title='Delete'>" +
-          iconView +
-          "</button><button class='btnDel btn btn-danger' data-togle='tooltip' title='Delete'>" +
-          iconDel +
-          "</button></div></div>",
+        defaultContent: "<div class='wrapper text-center'><div class='btn-group'><button class='btnView btn btn-primary' data-togle='tooltip' title='View'>" + iconView + "</button><button class='btnDel btn btn-danger' data-togle='tooltip' title='Delete'>" + iconDel + "</button></div></div>",
       },
     ],
   });
