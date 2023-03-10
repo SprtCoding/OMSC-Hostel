@@ -10,6 +10,10 @@
     background-repeat: no-repeat;
 }
 
+.notice {
+    color: #FF0000;
+}
+
 #btSignout {
     letter-spacing: 2px;
     color: #fff;
