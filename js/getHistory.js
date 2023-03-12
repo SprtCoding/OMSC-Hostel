@@ -1,71 +1,8 @@
-// var stdNo = 0;
-// const tBody = document.getElementById('historytBody');
-
-// function addDataToTable(historyID, name, status, logTime) {
-
-//         let trow = document.createElement("tr");
-//         let td1 = document.createElement('td');
-//         let td2 = document.createElement('td');
-//         let td3 = document.createElement('td');
-//         let td4 = document.createElement('td');
-//         let td5 = document.createElement('td');
-//         let td6 = document.createElement('td');
-//         let controlDiv = document.createElement('div');
-
-//         controlDiv.innerHTML = '<i class="fas fa-trash fa-1x me-3" style="color: #D54D22; cursor: pointer;" onclick="viewDataCheck('+stdNo+')"></i>';
-//         td2.classList.add('text-center');
-//         td3.classList.add('text-center');
-//         td4.classList.add('text-center');
-//         td5.classList.add('text-center');
-//         td6.classList.add('text-center');
-
-//         if(status == "Check-In") {
-//             td3.innerHTML = '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
-//             td4.innerHTML = "";
-//         }else {
-//             td4.innerHTML = '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
-//             td3.innerHTML = "";
-//         }
-
-//         td1.innerHTML = ++stdNo;
-//         td2.innerHTML = name;
-//         td5.innerHTML = logTime;
-//         td6.appendChild(controlDiv);
-
-//         td2.classList += " nameField";
-//         td3.classList += " roomnameField";
-//         td4.classList += " dreservedField";
-
-//         trow.appendChild(td1);
-//         trow.appendChild(td2);
-//         trow.appendChild(td3);
-//         trow.appendChild(td4);
-//         trow.appendChild(td5);
-//         trow.appendChild(td6);
-
-//         tBody.appendChild(trow);
-
-// }
-
-// function getAllDataHistory() {
-//     firebase.database().ref("BookedHistory/").once('value', function(snapshot) {
-//         var room = [];
-//         snapshot.forEach(childSnapshot => {
-//             room.push(childSnapshot.val());
-//         });
-//         AddAllItemsHistory(room);
-//     })
-// }
-
-// function AddAllItemsHistory(Rooms) {
-//     stdNo = 0;
-//     tBody.innerHTML = "";
-//     Rooms.forEach(element => {
-//         addDataToTable(element.hisID, element.clientName, element.status, element.LogTime);
-//     });
-// }
-
-// window.addEventListener('load', getAllDataHistory);
+var arrayOfCheckRooms = [];
+var numPHP = new Intl.NumberFormat("en-PH", {
+  style: 'currency',
+  currency: 'PHP'
+})
 
 $(document).ready(function () {
   var del;
@@ -119,160 +56,166 @@ $(document).ready(function () {
     ],
   });
 
-  firebase
-    .database()
-    .ref("BookedHistory/")
-    .on("child_added", (data) => {
-      if (data.child("status").val() == "Check-In") {
-        var stat =
-          '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
-        history = [
-          data.key,
-          data.child("clientName").val(),
-          stat + data.child("status").val(),
-          "",
-          data.child("LogTime").val(),
-          data.child("LogDate").val(),
-        ];
-      }
-      if (data.child("status").val() == "Check-Out") {
-        var stat =
-          '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
-        history = [
-          data.key,
-          data.child("clientName").val(),
-          "",
-          stat + data.child("status").val(),
-          data.child("LogTime").val(),
-          data.child("LogDate").val(),
-        ];
-      }
-      roomTable.rows.add([history]).draw();
-    });
+  firebase.database().ref("BookedHistory/").on("child_added", (data) => {
+    if (data.child("status").val() == "Check-In") {
+      var stat =
+        '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
+      history = [
+        data.key,
+        data.child("clientName").val(),
+        stat + data.child("status").val(),
+        "",
+        data.child("LogTime").val(),
+        data.child("LogDate").val(),
+      ];
+    }
+    if (data.child("status").val() == "Check-Out") {
+      var stat =
+        '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
+      history = [
+        data.key,
+        data.child("clientName").val(),
+        "",
+        stat + data.child("status").val(),
+        data.child("LogTime").val(),
+        data.child("LogDate").val(),
+      ];
+    }
+    roomTable.rows.add([history]).draw();
+  });
 
-  firebase
-    .database()
-    .ref("BookedHistory/")
-    .on("child_changed", (data) => {
-      if (data.child("status").val() == "Check-In") {
-        var stat =
-          '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
-        history = [
-          data.key,
-          data.child("clientName").val(),
-          stat + data.child("status").val(),
-          "",
-          data.child("LogTime").val(),
-          data.child("LogDate").val(),
-        ];
-      }
-      if (data.child("status").val() == "Check-Out") {
-        var stat =
-          '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
-        history = [
-          data.key,
-          data.child("clientName").val(),
-          "",
-          stat + data.child("status").val(),
-          data.child("LogTime").val(),
-          data.child("LogDate").val(),
-        ];
-      }
-      roomTable.rows.add([history]).draw();
-    });
+  firebase.database().ref("BookedHistory/").on("child_changed", (data) => {
+    if (data.child("status").val() == "Check-In") {
+      var stat =
+        '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
+      history = [
+        data.key,
+        data.child("clientName").val(),
+        stat + data.child("status").val(),
+        "",
+        data.child("LogTime").val(),
+        data.child("LogDate").val(),
+      ];
+    }
+    if (data.child("status").val() == "Check-Out") {
+      var stat =
+        '<i class="fas fa-check fa-1x me-3" style="color: #11c3d4;"></i>';
+      history = [
+        data.key,
+        data.child("clientName").val(),
+        "",
+        stat + data.child("status").val(),
+        data.child("LogTime").val(),
+        data.child("LogDate").val(),
+      ];
+    }
+    roomTable.rows.add([history]).draw();
+  });
 
-  firebase
-    .database()
-    .ref("BookedHistory/")
-    .on("child_removed", (data) => {
-      roomTable.row(del.parents("tr")).remove().draw();
-    });
+  firebase.database().ref("BookedHistory/").on("child_removed", (data) => {
+    roomTable.row(del.parents("tr")).remove().draw();
+  });
 
   $("#roomTable").on("click", ".btnDel", function () {
     del = $(this);
-    let file = $("#roomTable").dataTable().fnGetData(del.closest("tr"));
-    let roomIds = file[0];
-    let roomNames = file[1];
+    let table = $("#roomTable").dataTable();
+    let file = table.fnGetData($(this).closest("tr"));
 
-    swal({
-      title: "Are you sure want to delete " + roomNames + "?",
-      text: "Once deleted, you will not be able to recover this file!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        firebase
-          .database()
-          .ref("BookedHistory/" + roomIds)
-          .remove()
-          .then(function () {
-            swal("Success!", "Deleted successfully!", "success");
-          });
-      } else {
-        swal(roomNames + " is safe!");
-      }
-    });
+    try {
+      let roomIds = file[0];
+      let roomNames = file[1];
+
+      swal({
+        title: "Are you sure want to delete " + roomNames + "?",
+        text: "Once deleted, you will not be able to recover this file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          firebase
+            .database()
+            .ref("BookedHistory/" + roomIds)
+            .remove()
+            .then(function () {
+              swal("Success!", "Deleted successfully!", "success");
+            });
+        } else {
+          swal(roomNames + " is safe!");
+        }
+      });
+    } catch (error) {
+      console.error("An error occurred while getting data: " + error.message + " with data: ");
+    }
+
   });
 
   //details
 
-    const nameValueCheck = document.getElementById('nameValueCheck');
-    const dateReservedValueCheck = document.getElementById('dateReservedValueCheck');
-    const ageValueCheck = document.getElementById('ageValueCheck');
-    const hourReservedValueCheck = document.getElementById('hourReservedValueCheck');
-    const addressValueCheck = document.getElementById('addressValueCheck');
-    const roomNameValueCheck = document.getElementById('roomNameValueCheck');
-    const contactValueCheck = document.getElementById('contactValueCheck');
-    const priceValueCheck = document.getElementById('priceValueCheck');
-    const nationalityValueCheck = document.getElementById('nationalityValueCheck');
-    const daysValueCheck = document.getElementById('daysValueCheck');
-    const idPresentedValueCheck = document.getElementById('idPresentedValueCheck');
-    const totalAmountValueCheck = document.getElementById('totalAmountValueCheck');
-    const idImageValueCheck = document.getElementById('idImageValueCheck');
-    const checkInBtnCheck = document.getElementById('checkInBtnCheck');
-    const bookedByValueCheck = document.getElementById('bookedByValueCheck');
-    const bookedThruValueCheck = document.getElementById('bookedThruValueCheck');
-    const methodValueCheck = document.getElementById('methodValueCheck');
-    const firstPaymentValueCheck = document.getElementById('firstPaymentValueCheck');
-    const balanceValueCheck = document.getElementById('balanceValueCheck');
-    const statusValueCheck = document.getElementById('statusValueCheck');
+  const nameValueCheck = document.getElementById('nameValueCheck');
+  const dateReservedValueCheck = document.getElementById('dateReservedValueCheck');
+  const ageValueCheck = document.getElementById('ageValueCheck');
+  const hourReservedValueCheck = document.getElementById('hourReservedValueCheck');
+  const addressValueCheck = document.getElementById('addressValueCheck');
+  const roomNameValueCheck = document.getElementById('roomNameValueCheck');
+  const contactValueCheck = document.getElementById('contactValueCheck');
+  const priceValueCheck = document.getElementById('priceValueCheck');
+  const nationalityValueCheck = document.getElementById('nationalityValueCheck');
+  const daysValueCheck = document.getElementById('daysValueCheck');
+  const idPresentedValueCheck = document.getElementById('idPresentedValueCheck');
+  const totalAmountValueCheck = document.getElementById('totalAmountValueCheck');
+  const idImageValueCheck = document.getElementById('idImageValueCheck');
+  const bookedByValueCheck = document.getElementById('bookedByValueCheck');
+  const bookedThruValueCheck = document.getElementById('bookedThruValueCheck');
+  const methodValueCheck = document.getElementById('methodValueCheck');
+  const firstPaymentValueCheck = document.getElementById('firstPaymentValueCheck');
+  const balanceValueCheck = document.getElementById('balanceValueCheck');
+  const statusValueCheck = document.getElementById('statusValueCheck');
+  const typeValue = document.getElementById('typeValue');
+  const stat = document.getElementById('status');
+  const stats = document.getElementById('statuss');
+  const timeValue = document.getElementById('timeValue');
 
-    $("#roomTable").on("click", ".btnView", function () {
-        $("#checkDetailsModal").modal('show');
-        let file = $("#roomTable").dataTable().fnGetData($(this).closest("tr"));
-        let roomIds = file[0];
-        let roomNames = file[1];
-    
-        firebase.database().ref("CheckIn/").child(roomIds).on('value', data => {
-            CheckInroomAll = [data.key, data.child("NameOfClient").val(), data.child("NameOfRoom").val(), 
-            data.child("DateReserved").val(), data.child("Days").val(), data.child("Contact").val(), 
-            data.child("TotalPayment").val(), data.child("AgeOfClient").val(), data.child("HoursReserved").val(), 
-            data.child("Address").val(), data.child("Price").val(), data.child("Nationality").val(), data.child("IDType").val(), 
-            data.child("ClientsPhotoURL").val(), data.child("RoomPic").val(), data.child("BookedBy").val(), 
-            data.child("BookedThru").val(), data.child("Method").val(), data.child("FirstPayment").val(), 
-            data.child("Balance").val(), data.child("Status").val()];
-        })
+  $("#roomTable").on("click", ".btnView", function () {
+    let file = $('#roomTable').dataTable().fnGetData($(this).closest('tr'));
+    let roomIds = file[0];
 
-        nameValueCheck.value = CheckInroomAll[1];
-        roomNameValueCheck.value = roomNames;
-        dateReservedValueCheck.value = CheckInroomAll[3];
-        daysValueCheck.value = CheckInroomAll[4];
-        hourReservedValueCheck.value = CheckInroomAll[8];
-        ageValueCheck.value = CheckInroomAll[7];
-        idImageValueCheck.src = CheckInroomAll[13];
-        idPresentedValueCheck.value = CheckInroomAll[12];
-        addressValueCheck.value = CheckInroomAll[9];
-        contactValueCheck.value = CheckInroomAll[5];
-        priceValueCheck.value = numPHP.format(CheckInroomAll[10]);
-        nationalityValueCheck.value = CheckInroomAll[11];
-        totalAmountValueCheck.value = numPHP.format(CheckInroomAll[6]);
-        bookedByValueCheck.value = CheckInroomAll[15];
-        bookedThruValueCheck.value = CheckInroomAll[16];
-        methodValueCheck.value = CheckInroomAll[17];
-        firstPaymentValueCheck.value = numPHP.format(CheckInroomAll[18]);
-        balanceValueCheck.value = numPHP.format(CheckInroomAll[19]);
-        statusValueCheck.value = CheckInroomAll[20];
-      });
+    $("#checkDetailsModal").modal('show');
+
+    firebase.database().ref("BookedHistory/").child(roomIds).on('value', data => {
+      CheckInroomAll = [data.key, data.child("TypeOfClient").val(), data.child("clientName").val(), data.child("NameOfRoom").val(),
+      data.child("DateReserved").val(), data.child("Days").val(), data.child("Contact").val(),
+      data.child("TotalPayment").val(), data.child("AgeOfClient").val(), data.child("HoursReserved").val(),
+      data.child("Address").val(), data.child("Price").val(), data.child("Nationality").val(), data.child("IDType").val(),
+      data.child("ClientsPhotoURL").val(), data.child("RoomPic").val(), data.child("BookedBy").val(),
+      data.child("BookedThru").val(), data.child("Method").val(), data.child("FirstPayment").val(),
+      data.child("Balance").val(), data.child("Status").val(), data.child("status").val(), data.child("LogTime").val()];
+    })
+
+    typeValue.value = CheckInroomAll[1];
+    nameValueCheck.value = CheckInroomAll[2];
+    roomNameValueCheck.value = CheckInroomAll[3];
+    dateReservedValueCheck.value = CheckInroomAll[4];
+    daysValueCheck.value = CheckInroomAll[5];
+    hourReservedValueCheck.value = CheckInroomAll[9];
+    ageValueCheck.value = CheckInroomAll[8];
+    idImageValueCheck.src = CheckInroomAll[14];
+    idPresentedValueCheck.value = CheckInroomAll[13];
+    addressValueCheck.value = CheckInroomAll[10];
+    contactValueCheck.value = CheckInroomAll[6];
+    priceValueCheck.value = numPHP.format(CheckInroomAll[11]);
+    nationalityValueCheck.value = CheckInroomAll[12];
+    totalAmountValueCheck.value = numPHP.format(CheckInroomAll[7]);
+    bookedByValueCheck.value = CheckInroomAll[16];
+    bookedThruValueCheck.value = CheckInroomAll[17];
+    methodValueCheck.value = CheckInroomAll[18];
+    firstPaymentValueCheck.value = numPHP.format(CheckInroomAll[19]);
+    balanceValueCheck.value = numPHP.format(CheckInroomAll[20]);
+    statusValueCheck.value = CheckInroomAll[21];
+    stat.innerHTML = CheckInroomAll[22];
+    stats.innerHTML = CheckInroomAll[22];
+    timeValue.value = CheckInroomAll[23];
+
+  });
 
 });

@@ -1,72 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OMSC Hostel - Check-In</title>
-    <link rel="shortcut icon" type="x-icon" href="../img/omscico.ico"/>
+    <link rel="shortcut icon" type="x-icon" href="../img/omscico.ico" />
     <link rel="stylesheet" href="../css/customCss.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c75b1f485f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.3.3/css/buttons.bootstrap5.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.bootstrap5.min.css"/>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/buttons/2.3.3/css/buttons.bootstrap5.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.bootstrap5.min.css" />
     <!-- Font Awesome -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
-    <link
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css"
-    rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
 </head>
+
 <body onload="rlClock()">
     <div class="container-fluid">
         <div class="row min-vh-100 flex-column flex-md-row">
             <aside class="col-12 col-md-3 col-xl-2 p-0 bg-dark flex-shrink-1">
-                <nav class="navbar navbar-expand-md navbar-dark bg-dark flex-md-column flex-row align-items-center py-2 text-center sticky-top" id="sideBar">
+                <nav class="navbar navbar-expand-md navbar-dark bg-dark flex-md-column flex-row align-items-center py-2 text-center sticky-top"
+                    id="sideBar">
                     <div class="text-center p-3">
                         <div class="row">
                             <i class="fas fa-bed fa-2x me-3 mt-xl-4 mb-2" style="color: #fff;"></i>
                         </div>
                         <a class="navbar-brand fs-5 text-wrap mx-0 fw-bold" href="#">OMSC Hostel Management</a>
-                        <button class="navbar-toggler border-0 order-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler border-0 order-1" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
                             <i class="fa fa-bars-staggered fa-1x text-light" aria-hidden="true"></i>
                         </button>
                     </div>
-                    
+
                     <div class="collapse navbar-collapse order-last mt-4" id="navbarSupportedContent">
                         <ul class="navbar-nav flex-column w-100 text-start">
                             <li class="nav-item">
-                              <a class="nav-link" aria-current="page" href="dashboard.html"><i class="fas fa-fw fa-tachometer-alt"></i> Dashboard</a>
+                                <a class="nav-link" aria-current="page" href="dashboard.html"><i
+                                        class="fas fa-fw fa-tachometer-alt"></i> Dashboard</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" href="rooms.html"><i class="fas fa-bed fa-bed-alt"></i> Rooms</a>
+                                <a class="nav-link" href="rooms.html"><i class="fas fa-bed fa-bed-alt"></i> Rooms</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><i class="fas fa-check fa-check-alt"></i> Check-In</a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link" href="bookedHistory.html"><i class="fas fa-clock-rotate-left"></i> Booked History</a>
-                              </li>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="bookedHistory.html"><i class="fas fa-clock-rotate-left"></i>
+                                    Booked History</a>
+                            </li>
                             <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-gear fa-gear-alt"></i> Settings
-                              </a>
-                              <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item fs-6 fw-normal" href="#">Change Password</a></li>
-                                <li><a class="dropdown-item fs-6 fw-normal" href="#" id="btSignout">Log Out</a></li>
-                              </ul>
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fas fa-gear fa-gear-alt"></i> Settings
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item fs-6 fw-normal" href="#">Change Password</a></li>
+                                    <li><a class="dropdown-item fs-6 fw-normal" href="#" id="btSignout">Log Out</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -76,7 +80,9 @@
                 <div class="container py-3">
                     <div class="row">
                         <div class="col">
-                            <h2 class="text-dark ms-2 ds"><i class="fas fa-person-walking-luggage fa-person-walking-luggage-alt"></i> Check-In</h2>
+                            <h2 class="text-dark ms-2 ds"><i
+                                    class="fas fa-person-walking-luggage fa-person-walking-luggage-alt"></i> Check-In
+                            </h2>
                         </div>
                         <div class="col">
                             <p class="text-dark me-2 text-end" id="dateNow">Date</p>
@@ -85,8 +91,8 @@
                     <hr>
                     <div class="row d-flex justify-content-between align-items-center ps-4">
                         <div class="col-md-4">
-                            <a class="text-primary" 
-                            style="cursor: pointer;" href="dashboard.html"><i class="fas fa-arrow-left fa-arrow-left-alt me-2"></i> Back</a>
+                            <a class="text-primary" style="cursor: pointer;" href="dashboard.html"><i
+                                    class="fas fa-arrow-left fa-arrow-left-alt me-2"></i> Back</a>
                             <!-- <h4 class="font-weight-light">Check-In</h4> -->
                         </div>
                         <!-- <div class="col-md-8 d-flex" role="search">
@@ -118,29 +124,33 @@
                                 </tr>
                             </thead>
                             <tbody id="checktBody">
-                                
+
                             </tbody>
                         </table>
                     </div>
                 </div>
 
                 <!-- check-in details modal -->
-                <div class="modal modal-lg fade" id="checkDetailsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal modal-lg fade" id="checkDetailsModal" data-bs-backdrop="static"
+                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Check-In</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="row p-4">
                                     <div class="col-md-6 text-center" id="bookedByCol">
                                         <label class="me-2" for="bookedByValueCheck" id="label">Booked By: </label>
-                                        <input type="text" class="balanceValue w-50 p-2" id="bookedByValueCheck" disabled>
+                                        <input type="text" class="balanceValue w-50 p-2" id="bookedByValueCheck"
+                                            disabled>
                                     </div>
                                     <div class="col-md-6 text-center" id="bookedThruCol">
                                         <label class="me-2" for="bookedByValueCheck" id="label">Booked Thru: </label>
-                                        <input type="text" class="balanceValue w-50 p-2" id="bookedThruValueCheck" disabled>
+                                        <input type="text" class="balanceValue w-50 p-2" id="bookedThruValueCheck"
+                                            disabled>
                                     </div>
                                 </div>
                                 <hr>
@@ -148,13 +158,21 @@
                                     <h1 class="modal-title fs-5">Reserved Information</h1>
                                 </div>
                                 <div class="row p-2">
+                                    <div class="col-md-6 text-center mb-4" id="bookedByCol">
+                                        <label class="me-2" for="nameValue" id="label">Type of Client: </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="typeValue" disabled>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
                                     <div class="col-md-6 text-center" id="bookedByCol">
                                         <label class="me-2" for="nameValueCheck" id="label">Name: </label>
                                         <input type="text" class="balanceValue w-50 p-2" id="nameValueCheck" disabled>
                                     </div>
                                     <div class="col-md-6 text-center" id="bookedThruCol">
-                                        <label class="me-2" for="dateReservedValueCheck" id="label">Date Reserved: </label>
-                                        <input type="text" class="balanceValue w-50 p-2" id="dateReservedValueCheck" disabled>
+                                        <label class="me-2" for="dateReservedValueCheck" id="label">Date Reserved:
+                                        </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="dateReservedValueCheck"
+                                            disabled>
                                     </div>
                                 </div>
                                 <div class="row p-2">
@@ -163,24 +181,29 @@
                                         <input type="text" class="balanceValue w-50 p-2" id="ageValueCheck" disabled>
                                     </div>
                                     <div class="col-md-6 text-center" id="bookedThruCol">
-                                        <label class="me-2" for="hourReservedValueCheck" id="label">Reserved Hour: </label>
-                                        <input type="text" class="balanceValue w-50 p-2" id="hourReservedValueCheck" disabled>
+                                        <label class="me-2" for="hourReservedValueCheck" id="label">Reserved Hour:
+                                        </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="hourReservedValueCheck"
+                                            disabled>
                                     </div>
                                 </div>
                                 <div class="row p-2">
                                     <div class="col-md-6 text-center" id="bookedByCol">
                                         <label class="me-2" for="addressValueCheck" id="label">Address: </label>
-                                        <input type="text" class="balanceValue w-50 p-2" id="addressValueCheck" disabled>
+                                        <input type="text" class="balanceValue w-50 p-2" id="addressValueCheck"
+                                            disabled>
                                     </div>
                                     <div class="col-md-6 text-center" id="bookedThruCol">
                                         <label class="me-2" for="roomNameValueCheck" id="label">Room Name: </label>
-                                        <input type="text" class="balanceValue w-50 p-2" id="roomNameValueCheck" disabled>
+                                        <input type="text" class="balanceValue w-50 p-2" id="roomNameValueCheck"
+                                            disabled>
                                     </div>
                                 </div>
                                 <div class="row p-2">
                                     <div class="col-md-6 text-center" id="bookedByCol">
                                         <label class="me-2" for="contactValueCheck" id="label">Contact No: </label>
-                                        <input type="text" class="balanceValue w-50 p-2" id="contactValueCheck" disabled>
+                                        <input type="text" class="balanceValue w-50 p-2" id="contactValueCheck"
+                                            disabled>
                                     </div>
                                     <div class="col-md-6 text-center" id="bookedThruCol">
                                         <label class="me-2" for="priceValueCheck" id="label">Price: </label>
@@ -190,7 +213,8 @@
                                 <div class="row p-2">
                                     <div class="col-md-6 text-center" id="bookedByCol">
                                         <label class="me-2" for="nationalityValueCheck" id="label">Nationality: </label>
-                                        <input type="text" class="balanceValue w-50 p-2" id="nationalityValueCheck" disabled>
+                                        <input type="text" class="balanceValue w-50 p-2" id="nationalityValueCheck"
+                                            disabled>
                                     </div>
                                     <div class="col-md-6 text-center" id="bookedThruCol">
                                         <label class="me-2" for="daysValueCheck" id="label">Days: </label>
@@ -199,18 +223,23 @@
                                 </div>
                                 <div class="row p-2">
                                     <div class="col-md-6 text-center" id="bookedByCol">
-                                        <label class="me-2" for="idPresentedValueCheck" id="label">ID Presented: </label>
-                                        <input type="text" class="balanceValue w-50 p-2" id="idPresentedValueCheck" disabled>
+                                        <label class="me-2" for="idPresentedValueCheck" id="label">ID Presented:
+                                        </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="idPresentedValueCheck"
+                                            disabled>
                                     </div>
                                     <div class="col-md-6 text-center" id="bookedThruCol">
-                                        <label class="me-2" for="totalAmountValueCheck" id="label">Total Amount: </label>
-                                        <input type="text" class="balanceValue w-50 p-2" id="totalAmountValueCheck" disabled>
+                                        <label class="me-2" for="totalAmountValueCheck" id="label">Total Amount:
+                                        </label>
+                                        <input type="text" class="balanceValue w-50 p-2" id="totalAmountValueCheck"
+                                            disabled>
                                     </div>
                                 </div>
                                 <div class="row p-2">
                                     <div class="col-md-6 mx-auto d-block" id="bookedByCol">
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <img class="rounded img-thumbnail ms-4 w-75 h-75" id="idImageValueCheck" alt="id">
+                                            <img class="rounded img-thumbnail ms-4 w-75 h-75" id="idImageValueCheck"
+                                                alt="id">
                                         </div>
                                     </div>
                                     <div class="col-md-6 text-center" id="bookedThruCol">
@@ -230,14 +259,17 @@
                                         </div>
                                         <div class="row p-2">
                                             <div class="col text-center" id="bookedByCol">
-                                                <label class="me-2" for="firstPaymentValueCheck" id="label">First Payment: </label>
-                                                <input type="text" class="balanceValue w-50 p-2" id="firstPaymentValueCheck" disabled>
+                                                <label class="me-2" for="firstPaymentValueCheck" id="label">First
+                                                    Payment: </label>
+                                                <input type="text" class="balanceValue w-50 p-2"
+                                                    id="firstPaymentValueCheck" disabled>
                                             </div>
                                         </div>
                                         <div class="row p-2">
                                             <div class="col" id="bookedByCol">
                                                 <label class="me-2" for="balanceValueCheck" id="label">Balance: </label>
-                                                <input type="text" class="balanceValue w-50 p-2" id="balanceValueCheck" disabled>
+                                                <input type="text" class="balanceValue w-50 p-2" id="balanceValueCheck"
+                                                    disabled>
                                             </div>
                                         </div>
                                         <div class="row p-2">
@@ -255,8 +287,12 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" id="cancelBtn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-close fa-1x me-3" style="color: #ffffff; cursor: pointer;"></i>Cancel</button>
-                                <button type="button" class="btn btn-success" id="checkOutBtn"><i class="fas fa-check fa-1x me-3" style="color: #ffffff; cursor: pointer;"></i>Check-Out</button>
+                                <button type="button" class="btn btn-danger" id="cancelBtn" data-bs-dismiss="modal"
+                                    aria-label="Close"><i class="fas fa-close fa-1x me-3"
+                                        style="color: #ffffff; cursor: pointer;"></i>Cancel</button>
+                                <button type="button" class="btn btn-success" id="checkOutBtn"><i
+                                        class="fas fa-check fa-1x me-3"
+                                        style="color: #ffffff; cursor: pointer;"></i>Check-Out</button>
                             </div>
                         </div>
                     </div>
@@ -281,8 +317,10 @@
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.bootstrap5.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.print.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.4.0/js/responsive.bootstrap5.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/responsive/2.4.0/js/responsive.bootstrap5.js"></script>
     <script src="../js/getCheckIn.js"></script>
     <script type="module">
         // Import the functions you need from the SDKs you need
@@ -293,19 +331,19 @@
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-analytics.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
-      
+
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
-          apiKey: "AIzaSyD0ZQYT-ZKji8Y02nlc8L6nqs4-78uwL4E",
-          authDomain: "omsc-hostel-booking.firebaseapp.com",
-          projectId: "omsc-hostel-booking",
-          storageBucket: "omsc-hostel-booking.appspot.com",
-          messagingSenderId: "168692280364",
-          appId: "1:168692280364:web:652e83332e72f0e8c9f589",
-          measurementId: "G-68ZDM27DX6"
+            apiKey: "AIzaSyD0ZQYT-ZKji8Y02nlc8L6nqs4-78uwL4E",
+            authDomain: "omsc-hostel-booking.firebaseapp.com",
+            projectId: "omsc-hostel-booking",
+            storageBucket: "omsc-hostel-booking.appspot.com",
+            messagingSenderId: "168692280364",
+            appId: "1:168692280364:web:652e83332e72f0e8c9f589",
+            measurementId: "G-68ZDM27DX6"
         };
-      
+
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
@@ -316,7 +354,7 @@
         // Initialize Firebase Authentication and get a reference to the service
         const auth = getAuth();
 
-        $('#btSignout').click(function(){
+        $('#btSignout').click(function () {
             this.innerHTML = "<div class='loader'></div>";
             signOut(auth).then(() => {
                 // Sign-out successful.
@@ -330,4 +368,5 @@
         });
     </script>
 </body>
+
 </html>

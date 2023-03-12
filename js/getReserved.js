@@ -7,7 +7,7 @@ var numPHP = new Intl.NumberFormat("en-PH", {
 })
 
 // function addDataToTableReserved(roomID, name, roomname, dreserved, days, contact, total, rHours, age, idPic, idType, address, price, nationality, totalAmount, rPics) {
-    
+
 //         let trow = document.createElement("tr");
 //         let td1 = document.createElement('td');
 //         let td2 = document.createElement('td');
@@ -78,6 +78,7 @@ var numPHP = new Intl.NumberFormat("en-PH", {
 // window.addEventListener('load', getAllDataReserved);
 
 $(document).ready(function () {
+    const typeValue = document.getElementById('typeValue');
     const nameValue = document.getElementById('nameValue');
     const dateReservedValue = document.getElementById('dateReservedValue');
     const ageValue = document.getElementById('ageValue');
@@ -103,53 +104,53 @@ $(document).ready(function () {
     var checkinBtn = document.getElementById('checkInBtn');
 
     function manageBtn() {
-        if(bookedByValue.value == "" && bookedThruValue.value == "" && firstPaymentValue.value == "") {
+        if (bookedByValue.value == "" && bookedThruValue.value == "" && firstPaymentValue.value == "") {
             checkinBtn.disabled = true;
-        }else if(bookedByValue.value == "") {
+        } else if (bookedByValue.value == "") {
             checkinBtn.disabled = true;
-        }else if(bookedThruValue.value == "") {
+        } else if (bookedThruValue.value == "") {
             checkinBtn.disabled = true;
-        }else if(firstPaymentValue.value == "") {
+        } else if (firstPaymentValue.value == "") {
             checkinBtn.disabled = true;
-        }else {
+        } else {
             checkinBtn.disabled = false;
         }
     }
 
     firstPaymentValue.addEventListener("input", () => {
-        if(parseFloat(firstPaymentValue.value) > parseFloat(totalVal)) {
+        if (parseFloat(firstPaymentValue.value) > parseFloat(totalVal)) {
             balanceValue.value = "Amout to large";
             checkinBtn.disabled = true;
-        }else if(firstPaymentValue.value == "") {
+        } else if (firstPaymentValue.value == "") {
             balanceValue.value = numPHP.format(0);
             checkinBtn.disabled = true;
             manageBtn();
-        }else {
+        } else {
             manageBtn();
             bal = parseFloat(totalVal) - parseFloat(firstPaymentValue.value);
             balanceValue.value = numPHP.format(parseFloat(bal));
-            if(balanceValue.value == numPHP.format(0)) {
+            if (balanceValue.value == numPHP.format(0)) {
                 statusValue.value = "Paid"
-            }else {
+            } else {
                 statusValue.value = "Unpaid"
             }
         }
     })
 
     bookedByValue.addEventListener("input", () => {
-        if(bookedByValue.value == "") {
+        if (bookedByValue.value == "") {
             checkinBtn.disabled = true;
             manageBtn();
-        }else {
+        } else {
             manageBtn();
         }
     })
 
     bookedThruValue.addEventListener("input", () => {
-        if(bookedThruValue.value == "") {
+        if (bookedThruValue.value == "") {
             checkinBtn.disabled = true;
             manageBtn();
-        }else {
+        } else {
             manageBtn();
         }
     })
@@ -187,7 +188,7 @@ $(document).ready(function () {
             }
         ],
         pageLenght: 3,
-        lengthMenu: [[3,5,10,-1],[3,5,10,'all']],
+        lengthMenu: [[3, 5, 10, -1], [3, 5, 10, 'all']],
         data: Reservedroom,
         columnDefs: [
             {
@@ -196,20 +197,21 @@ $(document).ready(function () {
             },
             {
                 targets: -1,
-                defaultContent: "<div class='wrapper text-center'><div class='btn-group'><button class='btnView btn btn-success' data-togle='tooltip' title='View'>"+iconView+"</button><button class='btnDel btn btn-danger' data-togle='tooltip' title='Delete'>"+iconDel+"</button></div></div>"
+                defaultContent: "<div class='wrapper text-center'><div class='btn-group'><button class='btnView btn btn-success' data-togle='tooltip' title='View'>" + iconView + "</button><button class='btnDel btn btn-danger' data-togle='tooltip' title='Delete'>" + iconDel + "</button></div></div>"
             }
         ]
     })
 
     firebase.database().ref("Booked/").on('child_added', data => {
-        Reservedroom = [data.key, data.child("Name").val(), data.child("RoomName").val(), 
-        data.child("dateReserved").val(), data.child("days").val(), 
+        Reservedroom = [data.key, data.child("Name").val(), data.child("RoomName").val(),
+        data.child("dateReserved").val(), data.child("days").val(),
         data.child("contactNo").val(), numPHP.format(data.child("totalAmount").val())];
         roomTable.rows.add([Reservedroom]).draw();
     })
 
     firebase.database().ref("Booked/").on('child_changed', data => {
-        Reservedroom = [data.key, data.child("Name").val(), data.child("RoomName").val(), data.child("dateReserved").val(), data.child("days").val(), data.child("contactNo").val(), numPHP.format(data.child("totalAmount").val())];
+        Reservedroom = [data.key, data.child("Name").val(), data.child("RoomName").val(),
+        data.child("dateReserved").val(), data.child("days").val(), data.child("contactNo").val(), numPHP.format(data.child("totalAmount").val())];
         roomTable.rows.add([Reservedroom]).draw();
     })
 
@@ -217,43 +219,43 @@ $(document).ready(function () {
         roomTable.row($(this).parents('tr')).remove().draw();
     })
 
-    $('#roomTable').on('click', '.btnDel', function(){
+    $('#roomTable').on('click', '.btnDel', function () {
         del = $(this);
         let file = $('#roomTable').dataTable().fnGetData(del.closest('tr'));
         let roomIds = file[0];
         let roomNames = file[2];
 
         swal({
-            title: "Are you sure want to delete "+roomNames+"?",
+            title: "Are you sure want to delete " + roomNames + "?",
             text: "Once deleted, you will not be able to recover this file!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-                firebase.database().ref("RoomsTotal/"+roomIds).update(
-                    {
-                        RoomStatus: "Available",
-                    }
-                );
-                firebase.database().ref("Rooms/Available/"+roomIds).update(
-                    {
-                        RoomStatus: "Available",
-                    }
-                );
-                firebase.database().ref("Booked/"+roomIds).remove().then(
-                    function(){
-                        swal(roomNames + " has been deleted!", {
-                            icon: "success",
-                          });
-                        getAllDataReserved();
-                    }
-                );
-            } else {
-              swal(roomNames+" is safe!");
-            }
-        });
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    firebase.database().ref("RoomsTotal/" + roomIds).update(
+                        {
+                            RoomStatus: "Available",
+                        }
+                    );
+                    firebase.database().ref("Rooms/Available/" + roomIds).update(
+                        {
+                            RoomStatus: "Available",
+                        }
+                    );
+                    firebase.database().ref("Booked/" + roomIds).remove().then(
+                        function () {
+                            swal(roomNames + " has been deleted!", {
+                                icon: "success",
+                            });
+                            getAllDataReserved();
+                        }
+                    );
+                } else {
+                    swal(roomNames + " is safe!");
+                }
+            });
     })
 
     const today = new Date();
@@ -262,7 +264,7 @@ $(document).ready(function () {
     const seconds = addZero(today.getSeconds());
     var amPm = (hours < 12) ? "AM" : "PM";
     var hrs = (hours > 12) ? hours - 12 : hours;
-    if(hours == 0) {
+    if (hours == 0) {
         hrs = 12
     }
     const current_time = `${hrs}:${minutes}:${seconds}`
@@ -270,8 +272,8 @@ $(document).ready(function () {
     const year = today.getFullYear()
     const day = today.getDay()
     const daym = today.getDate()
-    const dayArray = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
-    const monthArray = new Array("January","February","March","April","May","June","July","August","September","October","November","December")
+    const dayArray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+    const monthArray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 
     const current_date = `${dayArray[day]} ${monthArray[month]} ${daym}, ${year}`
 
@@ -292,7 +294,7 @@ $(document).ready(function () {
     var fPayment = document.getElementById('fPayment');
     var balanceReceipt = document.getElementById('balanceReceipt');
 
-    $('#roomTable').on('click', '.btnView', function(){
+    $('#roomTable').on('click', '.btnView', function () {
         manageBtn();
         view = roomTable.row($(this).parents('tr'));
         let file = $('#roomTable').dataTable().fnGetData($(this).closest('tr'));
@@ -303,99 +305,125 @@ $(document).ready(function () {
         var day = file[4];
         var contacts = file[5];
 
+        let uid = firebase.database().ref("CheckIn/").push().key;
+
         firebase.database().ref("Booked/").child(roomIds).on('value', data => {
-            ReservedroomAll = [data.key, data.child("Name").val(), 
-            data.child("RoomName").val(), data.child("dateReserved").val(), 
-            data.child("days").val(), data.child("contactNo").val(), 
-            data.child("totalAmount").val(), data.child("Age").val(), 
-            data.child("reservedHour").val(), data.child("Address").val(), 
-            data.child("Price").val(), data.child("Nationality").val(), 
-            data.child("idType").val(), data.child("idFile").val(), 
+            ReservedroomAll = [data.key, data.child("TypeOfClient").val(), data.child("Name").val(),
+            data.child("RoomName").val(), data.child("dateReserved").val(),
+            data.child("days").val(), data.child("contactNo").val(),
+            data.child("totalAmount").val(), data.child("Age").val(),
+            data.child("reservedHour").val(), data.child("Address").val(),
+            data.child("Price").val(), data.child("Nationality").val(),
+            data.child("idType").val(), data.child("idFile").val(),
             data.child("RoomPic").val()];
         })
 
         $("#reservedDetailsModal").modal('show');
+        typeValue.value = ReservedroomAll[1];
         nameValue.value = name;
         roomNameValue.value = roomNames;
         dateReservedValue.value = dateR;
         daysValue.value = day;
-        hourReservedValue.value = ReservedroomAll[8];
-        ageValue.value = ReservedroomAll[7];
-        idImageValue.src = ReservedroomAll[13];
-        idPresentedValue.value = ReservedroomAll[12];
-        addressValue.value = ReservedroomAll[9];
+        hourReservedValue.value = ReservedroomAll[9];
+        ageValue.value = ReservedroomAll[8];
+        idImageValue.src = ReservedroomAll[14];
+        idPresentedValue.value = ReservedroomAll[13];
+        addressValue.value = ReservedroomAll[10];
         contactValue.value = contacts;
-        priceValue.value = numPHP.format(ReservedroomAll[10]);
-        nationalityValue.value = ReservedroomAll[11];
-        totalAmountValue.value = numPHP.format(ReservedroomAll[6]);
+        priceValue.value = numPHP.format(ReservedroomAll[11]);
+        nationalityValue.value = ReservedroomAll[12];
+        totalAmountValue.value = numPHP.format(ReservedroomAll[7]);
         balanceValue.value = numPHP.format(0);
 
-        totalVal = ReservedroomAll[6];
+        totalVal = ReservedroomAll[7];
 
-        $('#checkInBtn').click(function(){
-            if(bookedByValue.value == "" && bookedThruValue.value == "" && firstPaymentValue.value == "") {
+        $('#checkInBtn').click(function () {
+            if (bookedByValue.value == "" && bookedThruValue.value == "" && firstPaymentValue.value == "") {
                 swal("Warning!", "Fields is empty.", "warning");
-            }else if(bookedByValue.value == "") {
+            } else if (bookedByValue.value == "") {
                 swal("Warning!", "Booked By is empty.", "warning");
-            }else if(bookedThruValue.value == "") {
+            } else if (bookedThruValue.value == "") {
                 swal("Warning!", "Booked thru is empty.", "warning");
-            }else if(firstPaymentValue.value == "") {
+            } else if (firstPaymentValue.value == "") {
                 swal("Warning!", "First payment is empty.", "warning");
-            }else {
-                firebase.database().ref("CheckIn/"+roomIds).set(
+            } else {
+                firebase.database().ref("CheckIn/" + uid).set(
                     {
-                        CheckInID: roomIds,
+                        CheckInID: uid,
+                        RoomID: roomIds,
                         BookedBy: bookedByValue.value,
                         BookedThru: bookedThruValue.value,
+                        TypeOfClient: ReservedroomAll[1],
                         NameOfClient: nameValue.value,
                         NameOfRoom: roomNameValue.value,
                         DateReserved: dateReservedValue.value,
                         HoursReserved: hourReservedValue.value,
                         AgeOfClient: ageValue.value,
-                        ClientsPhotoURL: ReservedroomAll[13],
+                        ClientsPhotoURL: ReservedroomAll[14],
                         IDType: idPresentedValue.value,
                         Address: addressValue.value,
                         Contact: contactValue.value,
-                        Price: ReservedroomAll[10],
+                        Price: ReservedroomAll[11],
                         Nationality: nationalityValue.value,
-                        TotalPayment: ReservedroomAll[6],
+                        TotalPayment: ReservedroomAll[7],
                         Days: daysValue.value,
                         Method: methodValue.value,
                         FirstPayment: firstPaymentValue.value,
                         Balance: bal,
                         Status: statusValue.value,
-                        RoomPic: ReservedroomAll[14],
+                        RoomPic: ReservedroomAll[15],
                     },
                     (error) => {
-                        if(error) {
+                        if (error) {
                             swal("Error!", "Room not check-in!", "warning");
-                        }else {
-                            firebase.database().ref("BookedHistory/"+roomIds).set(
+                        } else {
+                            firebase.database().ref("BookedHistory/" + uid).set(
                                 {
-                                    hisID: roomIds,
+                                    hisID: uid,
+                                    RoomID: roomIds,
                                     clientName: nameValue.value,
                                     status: "Check-In",
                                     LogTime: current_time,
                                     LogDate: current_date,
+                                    BookedBy: bookedByValue.value,
+                                    BookedThru: bookedThruValue.value,
+                                    TypeOfClient: ReservedroomAll[1],
+                                    NameOfRoom: roomNameValue.value,
+                                    DateReserved: dateReservedValue.value,
+                                    HoursReserved: hourReservedValue.value,
+                                    AgeOfClient: ageValue.value,
+                                    ClientsPhotoURL: ReservedroomAll[14],
+                                    IDType: idPresentedValue.value,
+                                    Address: addressValue.value,
+                                    Contact: contactValue.value,
+                                    Price: ReservedroomAll[11],
+                                    Nationality: nationalityValue.value,
+                                    TotalPayment: ReservedroomAll[7],
+                                    Days: daysValue.value,
+                                    Method: methodValue.value,
+                                    FirstPayment: firstPaymentValue.value,
+                                    Balance: bal,
+                                    Status: statusValue.value,
+                                    RoomPic: ReservedroomAll[15],
                                 }
                             );
-                            firebase.database().ref("Rooms/NotAvailable/"+roomIds).set(
+                            firebase.database().ref("Rooms/NotAvailable/" + roomIds).set(
                                 {
                                     RoomID: roomIds,
                                     RoomName: roomNameValue.value,
                                     RoomStatus: "Not Available",
-                                    RoomPrice: ReservedroomAll[10],
-                                    RoomPic: ReservedroomAll[14],
+                                    RoomPrice: ReservedroomAll[11],
+                                    RoomPic: ReservedroomAll[15],
                                 }
                             );
-                            firebase.database().ref("RoomsTotal/"+roomIds).update(
+                            firebase.database().ref("RoomsTotal/" + roomIds).update(
                                 {
                                     RoomStatus: "Not Available",
                                 }
                             );
-                            firebase.database().ref("Rooms/Available/"+roomIds).remove();
-                            firebase.database().ref("Booked/"+roomIds).remove().then(
-                                function(){
+                            firebase.database().ref("Rooms/Available/" + roomIds).remove();
+                            firebase.database().ref("Booked/" + roomIds).remove().then(
+                                function () {
                                     swal("Success!", "Room check-in successfully!", "success").then((value) => {
                                         $("#reservedDetailsModal").modal('hide');
                                         nameOfCustomer.innerHTML = name;
